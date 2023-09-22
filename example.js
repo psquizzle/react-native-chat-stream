@@ -1,17 +1,3 @@
-# react-native-chat-stream
-
-### Add to App.js or top level of app
-```
-import 'react-native-polyfill-globals/auto';
-```
-### Install package
-
-```
-yarn add react-native-chat-stream
-```
-
-### Usage example
-```
 import React from "react";
 import { View, Text, Button } from "react-native";
 import { ReText } from "react-native-redash";
@@ -53,8 +39,3 @@ export default function Example({}) {
     </View>
   );
 }
-  
-```
-
-
-
