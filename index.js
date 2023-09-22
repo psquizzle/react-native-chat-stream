@@ -62,7 +62,7 @@ const fetchFunction = ({ url, options, streamMessage, final, ecb }) => {
     let calledDone = false;
     fetch(url, options)
       .then((res) => {
-        streamMessage.value = "";
+        streamMessage.value = ""
         if (!res.ok) {
           ecb({ type: "http", content: `HTTP error! Status: ${statusTranslations[res.status]}` });
           throw new Error(`HTTP error! Status: ${res.status}`);
@@ -113,7 +113,7 @@ const fetchFunction = ({ url, options, streamMessage, final, ecb }) => {
           if (parsedMessage) {
             const text = parsedMessage?.choices[0]?.delta?.content;
             if (text) {
-              streamMessage += text;
+              streamMessage.value += text;
   
               console.log(text ? text : message);
             } else if (parsedMessage) {
@@ -139,7 +139,7 @@ const fetchFunction = ({ url, options, streamMessage, final, ecb }) => {
               // console.log(message);
               if (final && !calledDone) {
                 calledDone = true;
-                final(streamMessage);
+                final(streamMessage.value);
               }
               return;
             }
