@@ -1,5 +1,9 @@
 # react-native-chat-stream
 
+```
+yarn add react-native-polyfill-globals
+```
+
 ### Add to App.js or top level of app
 ```
 import 'react-native-polyfill-globals/auto';
@@ -18,7 +22,8 @@ import { ReText } from "react-native-redash";
 import { useSharedValue } from "react-native-reanimated";
 import { chat } from "react-native-chat-stream";
 
-export default function Example({}) {
+export default function Example({ route }) {
+  const { organization, apiKey } = route.params; /// Add in your credentials
   const streamMessage = useSharedValue("");
   const [error, setError] = React.useState("");
 
@@ -28,12 +33,12 @@ export default function Example({}) {
         onPress={async () => {
           setError(null);
           chat({
-            organization: accessCredentials?.organization,
-            apiKey: accessCredentials?.apiKey,
+            organization: organization,
+            apiKey: apiKey,
             messages: [
               {
                 role: "user",
-                content: "This is a test. Tell the user if it worked.",
+                content: "What should I do today?",
               },
             ],
             streamMessage,
@@ -49,10 +54,11 @@ export default function Example({}) {
         {error}
       </Text>
 
-      <ReText style={{}} text={streamMessage}></ReText>
+      <ReText multiline={true} style={{}} text={streamMessage}></ReText>
     </View>
   );
 }
+
   
 ```
 
