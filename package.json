@@ -1,0 +1,33 @@
+{
+    "name": "react-native-chat-stream",
+    "version": "1.0.0",
+    "description": "ChatGPT API steaming in react native",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/psquizzle/react-native-chat-stream.git"
+    },
+    "keywords": [
+      "react",
+      "react-native",
+      "chat",
+      "stream", 
+      "openai",
+      "gpt"
+    ],
+    "author": "Peter Mapley",
+    "license": "MIT",
+    "dependencies": {
+        "base-64": "*",
+        "react-native-url-polyfill": "*",
+        "text-encoding": "*",
+        "web-streams-polyfill": "*",
+        "react-native-fetch-api": "*",
+        "react-native-get-random-values": "*",
+        "react-native-polyfill-globals":"*"
+    },
+    "peerDependencies": {
+
+    }
+  }
+  
