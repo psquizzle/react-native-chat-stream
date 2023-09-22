@@ -60,9 +60,11 @@ const statusTranslations = {
 
 const fetchFunction = ({ url, options, streamMessage, final, ecb }) => {
     let calledDone = false;
+    let accumulate = ""
+    streamMessage("")
     fetch(url, options)
       .then((res) => {
-        streamMessage.value = ""
+       
         if (!res.ok) {
           ecb({ type: "http", content: `HTTP error! Status: ${statusTranslations[res.status]}` });
           throw new Error(`HTTP error! Status: ${res.status}`);
@@ -113,7 +115,9 @@ const fetchFunction = ({ url, options, streamMessage, final, ecb }) => {
           if (parsedMessage) {
             const text = parsedMessage?.choices[0]?.delta?.content;
             if (text) {
-              streamMessage.value += text;
+              accumulate += text
+              streamMessage(accumulate)
+
   
               console.log(text ? text : message);
             } else if (parsedMessage) {
@@ -139,7 +143,7 @@ const fetchFunction = ({ url, options, streamMessage, final, ecb }) => {
               // console.log(message);
               if (final && !calledDone) {
                 calledDone = true;
-                final(streamMessage.value);
+                final(accumulate);
               }
               return;
             }

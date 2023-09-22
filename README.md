@@ -41,7 +41,9 @@ export default function Example({ route }) {
                 content: "What should I do today?",
               },
             ],
-            streamMessage,
+            streamMessage:(stream)=>{
+              streamMessage.value = stream
+            },
             final: (text) => {
               console.log("final", text);
             },
